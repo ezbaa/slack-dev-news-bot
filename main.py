@@ -6,7 +6,7 @@ load_dotenv()
 WEBHOOK_URL = os.environ.get("SLACK_WEBHOOK_URL")
 
 def fetch_articles():
-    url = "https://dev.to/api/articles?per_page=5&top=7"
+    url = "https://dev.to/api/articles?per_page=5"
     response = requests.get(url)
 
     if response.status_code == 200:
