@@ -1,8 +1,8 @@
-
 # Tech News Slack Bot
 
-This bot posts daily tech articles from DEV.to into a Slack channel using GitHub Actions.
+## About
 
+This bot delivers daily tech articles from DEV.to straight to your Slack channel. For each article, it provides an AI-generated summary so you can catch up quickly.
 ---
 
 ## Setup
@@ -23,35 +23,44 @@ Click **Fork** to create your own copy.
 
 ---
 
-### 3. Add the Webhook to GitHub
+### 3. Get a Groq API Key
+
+1. Go to https://console.groq.com
+2. Create a free account 
+3. Go to **API Keys** and create a new key
+4. Copy the key
+
+---
+
+### 4. Add Secrets to GitHub
 
 In your fork:
 
 * Go to **Settings → Secrets and variables → Actions**
-* Add a new secret:
-
+* Add two secrets:
 ```
 Name: SLACK_WEBHOOK_URL
-Value: <your webhook URL>
+Value: <your Slack webhook URL>
+
+Name: GROQ_API_KEY
+Value: <your Groq API key>
 ```
 
 ---
 
-### 4. Daily Automation (GitHub Actions)
+### 5. Daily Automation (GitHub Actions)
 
 The workflow is in:
-
 ```
 .github/workflows/schedule.yaml
 ```
 
 It runs once per day using a cron schedule and executes the Python script.
-
 If you want to change the time, edit the `cron:` line in the file.
 
 ---
 
-### 5. Test it once
+### 6. Test it once
 
 If you want to test right away:
 
@@ -59,4 +68,16 @@ If you want to test right away:
 * Open the workflow
 * Click **Run workflow**
 
-You should get a message in Slack if everything is set up correctly.
+You should get a message in Slack with AI-powered summaries if everything is set up correctly.
+
+---
+
+## Local Development
+
+If you want to run the bot locally, create a `.env` file in the project root:
+```
+SLACK_WEBHOOK_URL=your_slack_webhook_url
+GROQ_API_KEY=your_groq_api_key
+```
+
+---
