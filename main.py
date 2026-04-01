@@ -41,13 +41,13 @@ def summarize_with_ai(articles):
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
-{
-    "role": "system",
-    "content": "You summarize groups of tech articles for developers. You are concise, clear, and neutral. Focus on trends, themes, and insights, not individual article summaries. Include concrete examples if possible."
-},
-{
-    "role": "user",
-    "content": f"""
+            {
+                "role": "system",
+                "content": "You summarize groups of tech articles for developers. You are concise, clear, and neutral. Focus on trends, themes, and insights, not individual article summaries. Include concrete examples if possible.",
+            },
+            {
+                "role": "user",
+                "content": f"""
 Here are today's top developer articles:
 
 {articles_text}
@@ -59,8 +59,8 @@ Write a Slack-friendly AI summary (3–5 sentences, ~90–100 words) that:
 - Avoids summarizing each article individually
 - Does not repeat titles or snippets
 - Focuses on actionable insight or meaningful context for developers
-"""
-},
+""",
+            },
         ],
     )
     return response.choices[0].message.content
